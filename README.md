@@ -1,11 +1,15 @@
 # [Actions-OpenWrt-nanopi](https://github.com/meyer-net/action-openWrt-nanopi)
 
-本项目基于P3TERX/KFERMercer/Lean/SuLingGG/klever1988 五大天王的 Actions 项目:
+本项目基于<P3TERX>/<KFERMercer>/<Lean>/<SuLingGG>/<klever1988> 五大天王的 原始 项目:
 
 <https://github.com/P3TERX/Actions-OpenWrt>
+
 <https://github.com/KFERMercer/OpenWrt-CI>
+
 <https://github.com/coolsnowwolf/lede>
+
 <https://github.com/SuLingGG/Action-OpenWrt-Rpi>
+
 <https://github.com/klever1988/nanopi-openwrt>
 
 特此感谢～
@@ -106,9 +110,11 @@ Lean's OpenWrt source:
 <https://github.com/coolsnowwolf/lede>
 
 SuLingGG/Action-OpenWrt-Rpi (本项目基于此项目，结构及命名规范合理):
+
 <https://github.com/SuLingGG/Action-OpenWrt-Rpi>
 
 klever1988/nanopi-openwrt (优化参考基础):
+
 <https://github.com/klever1988/nanopi-openwrt>
 
 CTCGFW's Team:
