@@ -1,4 +1,4 @@
-# [Actions-OpenWrt-nanopi](https://github.com/meyer-net/action-openWrt-nanopi)
+# [Actions-OpenWrt-NanoPi](https://github.com/meyer-net/action-openWrt-nanopi)
 
 本项目基于P3TERX / KFERMercer / SuLingGG / klever1988 四位大佬的 原始 项目:
 
