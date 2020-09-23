@@ -1,6 +1,6 @@
 # [Actions-OpenWrt-nanopi](https://github.com/meyer-net/action-openWrt-nanopi)
 
-本项目基于<P3TERX>/<KFERMercer>/<Lean>/<SuLingGG>/<klever1988> 五大天王的 原始 项目:
+本项目基于[P3TERX]/[KFERMercer]/[Lean]/[SuLingGG]/[klever1988] 五大天王的 原始 项目:
 
 <https://github.com/P3TERX/Actions-OpenWrt>
 
@@ -18,9 +18,11 @@
 
 本项目基本保留了 [P3TERX/Actions-OpenWrt](https://github.com/P3TERX/Actions-OpenWrt) 项目的特性，
 
-建议首先阅读 P3Terx 大佬的云编译教程后再使用本项目:
+建议首先阅读 P3Terx 大佬的云编译教程及相关文章后再使用本项目:
 
-[使用 GitHub Actions 云编译 OpenWrt](https://p3terx.com/archives/build-openwrt-with-github-actions.html)
+- [使用 GitHub Actions 云编译 OpenWrt](https://p3terx.com/archives/build-openwrt-with-github-actions.html)
+- [面向小白的Github_Action使用workflow自动编译lean_openwrt教程](https://zhuanlan.zhihu.com/p/94402324)
+- [关于Github Action自动编译Lean_Openwrt的配置修改问题](https://zhuanlan.zhihu.com/p/94527343)
 
 在此之上，本项目还添加了以下特性:
 
