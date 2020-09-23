@@ -1,16 +1,18 @@
 # [Actions-OpenWrt-nanopi](https://github.com/meyer-net/action-openWrt-nanopi)
 
-本项目基于P3TERX / KFERMercer / Lean / SuLingGG / klever1988 五位大佬的 原始 项目:
+本项目基于P3TERX / KFERMercer / SuLingGG / klever1988 四位大佬的 原始 项目:
 
 <https://github.com/P3TERX/Actions-OpenWrt>
 
 <https://github.com/KFERMercer/OpenWrt-CI>
 
-<https://github.com/coolsnowwolf/lede>
-
 <https://github.com/SuLingGG/Action-OpenWrt-Rpi>
 
 <https://github.com/klever1988/nanopi-openwrt>
+
+主要编译 Lean 大佬的项目:
+
+<https://github.com/coolsnowwolf/lede>
 
 特此感谢～
 
@@ -77,7 +79,7 @@ TZ: # 时区设置
 
 
 ```
-Action-OpenWrt-Rpi
+actions-openwrt-nanopi
 ├── .github
 │   └── workflows  # Github Action 工作流配置文件夹
 ├── config # .config 文件存放文件夹
