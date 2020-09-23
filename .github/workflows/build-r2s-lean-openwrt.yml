@@ -18,7 +18,7 @@ on:
     paths:
       - 'config/lean/r2s-lean-openwrt.config'
   schedule:
-    - cron: 10 19 * * *
+    - cron: 0 20 * * *
 #  watch:
 #    types: started
 

@@ -51,7 +51,7 @@
 
 本项目采用两种触发方式:
 
-1. 检测到项目 config/[lean/offical/project] 下的 *.config 文件被上传或者内容发生变动；
+1. 检测到项目 config/[lean] 下的 *.config 文件被上传或者内容发生变动；
 2. 新的 Release 被发布。
 
 此外，Github Action 支持多种触发方式，比如定时触发、Star 触发等，详细操作方法请前往 [P3terx 大佬的博客](https://p3terx.com/archives/build-openwrt-with-github-actions.html) 中查看~
