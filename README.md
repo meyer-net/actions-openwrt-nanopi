@@ -85,20 +85,19 @@ actions-openwrt-nanopi
 ├── config # .config 文件存放文件夹
 ├── scripts # 项目脚本文件夹
 │  ├── convert-translation.sh # 第三方软件包翻译转换脚本 (用于官方版 OpenWrt )
-│  ├── enable-rpi4-wifi.sh # 用于修复树莓派 4 的 WiFi 问题 (编译树莓派的官方版 OpenWrt 需要取消 yml 文件中 Load Custom Configuration 部分的注释)
 │  ├── lean-openwrt.sh # Lean 版源码应用的 DIY 脚本文件
-│  ├── offical-openwrt.sh # 官方 OpenWrt Snapshot 源码应用的 DIY 脚本文件
-│  ├── project-openwrt.sh # Project-OpenWrt 版源码应用的 DIY 脚本文件
 │  └── remove-upx.sh # 移除二进制文件中的 upx 压缩，以提高性能 (用于官方版 OpenWrt )
 ├── server (小型 WEB 服务器，用于 package-server)
-├── template 提供 Lean / 官方 OpenWrt Snapshot / Project-OpenWrt 三种 config 配置文件模板
+├── template 提供基于 Lean 版 config 配置文件模板
 ├── LICENSE # 项目许可证文件
 └── README.md # 项目描述文件
 ```
 
 ## 鸣谢
 
-P3TERX/Actions-OpenWrt (基项目)：<https://github.com/P3TERX/Actions-OpenWrt>
+P3TERX/Actions-OpenWrt (根项目)：<https://github.com/P3TERX/Actions-OpenWrt>
+
+SuLingGG/Action-OpenWrt-Rpi (基项目，结构及命名规范合理)：<https://github.com/SuLingGG/Action-OpenWrt-Rpi>
 
 OpenWrt Source Repository：<https://github.com/openwrt/openwrt/>
 
@@ -106,8 +105,6 @@ KFERMercer's OpenWrt-CI：<https://github.com/KFERMercer/OpenWrt-CI>
 
 Lean's OpenWrt source：<https://github.com/coolsnowwolf/lede>
 
-SuLingGG/Action-OpenWrt-Rpi (本项目基于此项目，结构及命名规范合理)：<https://github.com/SuLingGG/Action-OpenWrt-Rpi>
-
-klever1988/nanopi-openwrt (优化参考基础)：<https://github.com/klever1988/nanopi-openwrt>
+klever1988/nanopi-openwrt (优化参考)：<https://github.com/klever1988/nanopi-openwrt>
 
 CTCGFW's Team：<https://github.com/project-openwrt>
