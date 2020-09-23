@@ -1,6 +1,6 @@
 # [Actions-OpenWrt-nanopi](https://github.com/meyer-net/action-openWrt-nanopi)
 
-本项目基于[P3TERX]/[KFERMercer]/[Lean]/[SuLingGG]/[klever1988] 五大天王的 原始 项目:
+本项目基于P3TERX / KFERMercer / Lean / SuLingGG / klever1988 五位大佬的 原始 项目:
 
 <https://github.com/P3TERX/Actions-OpenWrt>
 
@@ -96,29 +96,16 @@ Action-OpenWrt-Rpi
 
 ## 鸣谢
 
-P3TERX/Actions-OpenWrt (基项目):
+P3TERX/Actions-OpenWrt (基项目)：<https://github.com/P3TERX/Actions-OpenWrt>
 
-<https://github.com/P3TERX/Actions-OpenWrt>
+OpenWrt Source Repository：<https://github.com/openwrt/openwrt/>
 
-OpenWrt Source Repository:
+KFERMercer's OpenWrt-CI：<https://github.com/KFERMercer/OpenWrt-CI>
 
-<https://github.com/openwrt/openwrt/>
+Lean's OpenWrt source：<https://github.com/coolsnowwolf/lede>
 
-KFERMercer's OpenWrt-CI:
-<https://github.com/KFERMercer/OpenWrt-CI>
+SuLingGG/Action-OpenWrt-Rpi (本项目基于此项目，结构及命名规范合理)：<https://github.com/SuLingGG/Action-OpenWrt-Rpi>
 
-Lean's OpenWrt source:
+klever1988/nanopi-openwrt (优化参考基础)：<https://github.com/klever1988/nanopi-openwrt>
 
-<https://github.com/coolsnowwolf/lede>
-
-SuLingGG/Action-OpenWrt-Rpi (本项目基于此项目，结构及命名规范合理):
-
-<https://github.com/SuLingGG/Action-OpenWrt-Rpi>
-
-klever1988/nanopi-openwrt (优化参考基础):
-
-<https://github.com/klever1988/nanopi-openwrt>
-
-CTCGFW's Team:
-
-<https://github.com/project-openwrt>
+CTCGFW's Team：<https://github.com/project-openwrt>
