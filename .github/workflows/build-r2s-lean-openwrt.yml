@@ -16,16 +16,16 @@ on:
     branches:
       - main
     paths:
-      - 'config/lean/r2s-lean-openwrt.config'
+      - 'config/lean/rockchip/r2s-lean-openwrt.config'
   schedule:
-    - cron: 0 21 * * *
+    - cron: 0 18 * * *
 #  watch:
 #    types: started
 
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
-  CONFIG_FILE: config/lean/r2s-lean-openwrt.config
+  CONFIG_FILE: config/lean/rockchip/r2s-lean-openwrt.config
   DEVICE: openwrt-rockchip-armv8-friendlyarm_nanopi-r2s
   DIY_SH: scripts/lean-openwrt.sh
   SSH_ACTIONS: false
@@ -57,26 +57,35 @@ jobs:
         sudo -E apt-get -qq autoremove --purge
         sudo -E apt-get -qq clean
         sudo timedatectl set-timezone "$TZ"
+
     - name: Clone Source Code
       run: |
         df -hT $PWD
         git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
+
     - name: Update Feeds
       run: |
         cd openwrt
         echo "::set-env name=OPENWRTROOT::$PWD"
         ./scripts/feeds update -a
+
     - name: Install Feeds
       run: |
         cd $OPENWRTROOT
         ./scripts/feeds install -a
+
     - name: Load Custom Configuration
       run: |
         [ -e files ] && mv files $OPENWRTROOT/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE $OPENWRTROOT/.config
-        chmod +x $DIY_SH
+        chmod +x scripts/*.sh
+        mv patch/enable-autocore.diff $OPENWRTROOT
         cd $OPENWRTROOT
         ../$DIY_SH
+        ../scripts/preset-clash-core.sh armv8
+        ../scripts/preset-terminal-tools.sh
+        git apply enable-autocore.diff
+
     - name: SSH Connection To Actions
       uses: P3TERX/debugger-action@main
       if: env.SSH_ACTIONS == 'true' || contains(github.event.action, 'ssh')
@@ -93,6 +102,7 @@ jobs:
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
+        
     - name: Compile Packages
       id: compile
       run: |
@@ -105,6 +115,7 @@ jobs:
         make package/compile -j$(nproc) IGNORE_ERRORS=1 || make package/compile -j1 V=s IGNORE_ERRORS=1
         make package/index
         echo "::set-output name=status::success"
+
     - name: Set Environment Variable
       if: steps.compile.outputs.status == 'success'
       run: |
@@ -118,6 +129,7 @@ jobs:
         SUBTARGET=$(basename `pwd`)
         echo "::set-env name=SUBTARGET::$SUBTARGET"
         echo "::set-env name=FIRMWARE::$PWD"
+
     - name: Generate Firmware
       if: steps.compile.outputs.status == 'success'
       id: generate
@@ -150,9 +162,6 @@ jobs:
         make package/install -j$(nproc) || make package/install -j1 V=s
         make target/install -j$(nproc) || make target/install -j1 V=s
         make checksum
-        grep '^CONFIG_TARGET.*DEVICE.*=y' .config | sed -r 's/.*DEVICE_(.*)=y/\1/' > DEVICE_NAME
-        [ -s DEVICE_NAME ] && echo "::set-env name=DEVICE_NAME::_$(cat DEVICE_NAME)"
-        echo "::set-env name=FILE_DATE::_$(date +"%Y%m%d%H%M")"
         echo "::set-output name=status::success"
         
     - name: Deploy Packages-Server
@@ -241,27 +250,31 @@ jobs:
         rm -rf *.img packages pre-packages-server sha256sums
         mv sha256sums.orig sha256sums
         tree -L 1
+        df -hT $PWD
         echo "::set-output name=status::success"
+
     - name: Upload Firmware To CowTransfer
       if: steps.organize.outputs.status == 'success' && env.UPLOAD_COWTRANSFER == 'true' && !cancelled()
       run: |
         curl -fsSL git.io/file-transfer | sh
         ./transfer cow --block 2621440 -s -p 64 --no-progress ${FIRMWARE} 2>&1 | tee cowtransfer.log
         echo "::warning file=Firmware-cowtransfer.com::$(cat cowtransfer.log | grep https)"
+
     - name: Upload Firmware To WeTransfer
       if: steps.organize.outputs.status == 'success' && env.UPLOAD_WETRANSFER == 'true' && !cancelled()
       run: |
         curl -fsSL git.io/file-transfer | sh
         ./transfer wet -s -p 16 --no-progress ${FIRMWARE} 2>&1 | tee wetransfer.log
         echo "::warning file=Firmware-wetransfer.com::$(cat wetransfer.log | grep https)"
+        
     - name: Upload DL To CowTransfer
       if: steps.organize.outputs.status == 'success' && env.UPLOAD_COWTRANSFER == 'true' && !cancelled()
       run: |
-        ./transfer cow --block 2621440 -s -p 64 --no-progress ${OPENWRTROOT}/dl.zip 2>&1 | tee cowtransfer-dl.log
+        ./transfer cow --block 2621440 -s -p 64 --no-progress ${OPENWRTROOT}/DL.zip 2>&1 | tee cowtransfer-dl.log
         echo "::warning file=DL-cowtransfer.com::$(cat cowtransfer-dl.log | grep https)"
         
     - name: Upload DL To WeTransfer
       if: steps.organize.outputs.status == 'success' && env.UPLOAD_WETRANSFER == 'true' && !cancelled()
       run: |
-        ./transfer wet -s -p 16 --no-progress ${OPENWRTROOT}/dl.zip 2>&1 | tee wetransfer-dl.log
+        ./transfer wet -s -p 16 --no-progress ${OPENWRTROOT}/DL.zip 2>&1 | tee wetransfer-dl.log
         echo "::warning file=DL-wetransfer.com::$(cat wetransfer-dl.log | grep https)"

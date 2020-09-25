@@ -84,9 +84,7 @@ actions-openwrt-nanopi
 │   └── workflows  # Github Action 工作流配置文件夹
 ├── config # .config 文件存放文件夹
 ├── scripts # 项目脚本文件夹
-│  ├── convert-translation.sh # 第三方软件包翻译转换脚本 (用于官方版 OpenWrt )
 │  ├── lean-openwrt.sh # Lean 版源码应用的 DIY 脚本文件
-│  └── remove-upx.sh # 移除二进制文件中的 upx 压缩，以提高性能 (用于官方版 OpenWrt )
 ├── server (小型 WEB 服务器，用于 package-server)
 ├── template 提供基于 Lean 版 config 配置文件模板
 ├── LICENSE # 项目许可证文件
