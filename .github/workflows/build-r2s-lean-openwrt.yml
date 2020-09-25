@@ -14,7 +14,7 @@ on:
     types: published
   push:
     branches:
-      - main
+      - master
     paths:
       - 'config/lean/rockchip/r2s-lean-openwrt.config'
   schedule:
@@ -45,7 +45,7 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@main
+      uses: actions/checkout@master
 
     - name: Initialization Environment
       env:
@@ -57,6 +57,7 @@ jobs:
         sudo -E apt-get -qq autoremove --purge
         sudo -E apt-get -qq clean
         sudo timedatectl set-timezone "$TZ"
+        sudo curl ip.sb
 
     - name: Clone Source Code
       run: |
@@ -266,7 +267,7 @@ jobs:
         curl -fsSL git.io/file-transfer | sh
         ./transfer wet -s -p 16 --no-progress ${FIRMWARE} 2>&1 | tee wetransfer.log
         echo "::warning file=Firmware-wetransfer.com::$(cat wetransfer.log | grep https)"
-        
+
     - name: Upload DL To CowTransfer
       if: steps.organize.outputs.status == 'success' && env.UPLOAD_COWTRANSFER == 'true' && !cancelled()
       run: |
