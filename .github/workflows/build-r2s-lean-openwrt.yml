@@ -57,7 +57,6 @@ jobs:
         sudo -E apt-get -qq autoremove --purge
         sudo -E apt-get -qq clean
         sudo timedatectl set-timezone "$TIME_ZONE"
-        sudo curl ip.sb
 
     - name: Clone Source Code
       run: |
@@ -86,14 +85,12 @@ jobs:
         chmod +x scripts/*.sh
         mv patch/enable-autocore.diff $OPENWRTROOT
         cd $OPENWRTROOT
-        ls
-        pwd
         ../$DIY_SH
-        pwd
         ../scripts/preset-clash-core.sh armv8
-        pwd
         ../scripts/preset-terminal-tools.sh
-        pwd
+        ls
+        echo "----"
+        ls package/lean/autocore/
         git apply enable-autocore.diff
 
     - name: Download Package
