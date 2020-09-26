@@ -28,7 +28,7 @@ env:
   CONFIG_FILE: config/lean/rockchip/r2s-lean-openwrt.config
   DEVICE: openwrt-rockchip-armv8-friendlyarm_nanopi-r2s
   DIY_SH: scripts/lean-openwrt.sh
-  SSH_ACTIONS: false
+  SSH_ACTIONS: true
   IPV6MOD_IN_FIRMWARE: true
   KMODS_IN_FIRMWARE: true
   UPLOAD_EXT4_IMAGES: true
@@ -75,6 +75,10 @@ jobs:
         cd $OPENWRTROOT
         ./scripts/feeds install -a
 
+    - name: SSH Connection To Actions
+      uses: P3TERX/debugger-action@main
+      if: env.SSH_ACTIONS == 'true' || contains(github.event.action, 'ssh')
+
     - name: Load Custom Configuration
       run: |
         [ -e files ] && mv files $OPENWRTROOT/files
@@ -86,10 +90,6 @@ jobs:
         ../scripts/preset-clash-core.sh armv8
         ../scripts/preset-terminal-tools.sh
         git apply enable-autocore.diff
-
-    - name: SSH Connection To Actions
-      uses: P3TERX/debugger-action@main
-      if: env.SSH_ACTIONS == 'true' || contains(github.event.action, 'ssh')
 
     - name: Download Package
       id: package
